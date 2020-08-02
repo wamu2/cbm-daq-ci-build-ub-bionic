@@ -4,8 +4,8 @@ set -o pipefail
 set -e
 set -x
 
-# info
-cat /etc/os-release
+# OS version info
+grep VERSION /etc/os-release
 
 # install googletest
 cd /tmp
