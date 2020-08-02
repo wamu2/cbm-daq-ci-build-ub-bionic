@@ -5,7 +5,7 @@ set -e
 set -x
 
 # info
-lsb_release -a
+cat /etc/os-release
 
 # install googletest
 cd /tmp
