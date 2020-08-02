@@ -1,6 +1,6 @@
 FROM wfjm/cbm-daq-ci-base-ub-bionic
 
-ADD install.sh
-RUN ./install.sh
+COPY install.sh /tmp/
+RUN cd /tmp && ./install.sh
 
 CMD bash
