@@ -1,15 +1,18 @@
 #!/bin/bash
 #
 set -o pipefail
-set -e
-set -x
+set -ex
 
 # define versions
 export VTAG_GTEST=tags/release-1.10.0
 export VTAG_MSGPACK_CPP=70912ff
+export VTAG_LIBZMQ=tags/v4.3.2
+export VTAG_CPPZMQ=tags/v4.6.0
 
-# OS version info
+# OS version info and processor capabilities
 grep VERSION /etc/os-release
+# processor capabilities
+nproc
 
 # install googletest
 cd /tmp
@@ -19,7 +22,7 @@ git checkout $VTAG_GTEST
 mkdir build
 cd build
 cmake ..
-make
+time make -j $(nproc)
 make install
 
 # install msgpack cpp
@@ -32,6 +35,29 @@ mkdir build
 cd build
 cmake -DMSGPACK_BUILD_TESTS=OFF -DMSGPACK_BUILD_EXAMPLES=OFF ..
 make install
+
+# install libzmq
+cd /tmp
+git clone https://github.com/zeromq/libzmq.git
+cd libzmq
+git checkout $VTAG_LIBZMQ
+mkdir build
+cd build
+cmake ..
+time make -j $(nproc)
+sudo make install
+
+# install cppzmq
+cd /tmp
+git clone https://github.com/zeromq/cppzmq.git
+cd cppzmq
+git checkout $VTAG_CPPZMQ
+mkdir build
+cd build
+cmake ..
+time make -j $(nproc)
+sudo make install
+
 
 # drop tmp files
 cd ..
