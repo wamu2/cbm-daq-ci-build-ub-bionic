@@ -45,7 +45,7 @@ mkdir build
 cd build
 cmake ..
 time make -j $(nproc)
-sudo make install
+make install
 
 # install cppzmq
 cd /tmp
@@ -56,7 +56,7 @@ mkdir build
 cd build
 cmake ..
 time make -j $(nproc)
-sudo make install
+make install
 
 
 # drop tmp files
