@@ -58,7 +58,6 @@ cmake ..
 time make -j $(nproc)
 make install
 
-
 # drop tmp files
 cd ..
 rm -rf /tmp/*

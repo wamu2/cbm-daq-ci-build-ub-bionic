@@ -6,3 +6,6 @@ based tests.
 
 It is based on the OS base image
 [cbm-daq-ci-base-ub-bionic](https://github.com/wamu2/cbm-daq-ci-base-ub-bionic).
+
+Installed packages and reasoning behind:
+- identical to [cbm-daq-ci-build-ub-focal](https://github.com/wamu2/cbm-daq-ci-build-ub-focal/blob/master/README.md)
